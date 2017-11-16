@@ -32,14 +32,20 @@ export function createGroup(title) {
         })
 }
 
-export function updateGroup(groupId, groupInfo) {
-    axios.put( gApiUrl + '/' + groupId, groupInfo)
+export function updateGroup(groupId, updatedGroupInfo) {
+    axios.put( gApiUrl + '/' + groupId, updatedGroupInfo)
         .then( (response) => {
             console.log(response.data);
         })
 }
 
 //TODO: delete group
+export function deleteGroup(groupId) {
+    axios.delete( gApiUrl + '/' + groupId )
+        .then( (response) => {
+            console.log(response.data);
+        })
+}
 
 export function loadUsers() {
     axios.get ( uApiUrl )
@@ -66,3 +72,4 @@ window.loadUsers = loadUsers;
 window.loadUserById = loadUserById;
 window.createGroup = createGroup;
 window.updateGroup = updateGroup;
+window.deleteGroup = deleteGroup;
