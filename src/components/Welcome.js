@@ -5,7 +5,7 @@ class Welcome extends Component {
     render() {
         return (
             <div>
-                <h1>Secret Santa App</h1>
+                <h1>Secret Santa Apps</h1>
             </div>
         )
     }
