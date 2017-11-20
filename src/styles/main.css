@@ -60,6 +60,11 @@ h4 {
   background-color: #f6f6f6;
 }
 
+.error {
+  font-weight:bold;
+  color: #b02116;
+}
+
 
 
 /* ---------- */

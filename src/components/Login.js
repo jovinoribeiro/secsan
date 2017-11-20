@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import UserStore from '../stores/UserStore';
+
+import * as UserActions from '../actions/UserActions';
 
 import MainNavBar from './MainNavBar';
 import Jumbotron from './Jumbotron';
@@ -10,8 +13,25 @@ class Login extends Component {
         super();
         this.state = {
             username : '',
-            password : ''
+            password : '',
+            failedValidation : false
         }
+    }
+
+    componentDidMount() {
+        UserStore.on("user_logged_in", () => {
+            let curUser = UserStore.getCurrentUser();
+            this.props.history.push( {
+                pathname : '/dashboard',
+                state : {
+                    user : curUser
+                }
+            });
+        });
+
+        UserStore.on("user_failed_validation", () => {
+            this.setState( { failedValidation : true });
+        })
     }
 
     onUserNameChange(event) {
@@ -25,15 +45,26 @@ class Login extends Component {
     }
 
     onLoginPressed() {
-        console.log( this.props.history );
-        this.props.history.push( { pathname : '/dashboard' } );
+        if (this.state.username != "" && 
+            this.state.password != "")
+            UserActions.validateUserLogin(this.state.username, this.state.password);
+        else
+            UserActions.validateUserLogin("user_1@gmail.com", "password");
+    }
+
+    failedValidationMessage() {
+        if (this.state.failedValidation) {
+            return (
+                <p className='error'>Validation Failed. Please check your email and password.</p>
+            )
+        }
     }
 
     render() {
         return (
             <section>
-                <MainNavBar />
-                <Jumbotron />
+                {/*<MainNavBar />
+                <Jumbotron />*/}
                 <div className='container'>
                 <div className='row'>
                 <div className='col-sm-12 col-md-6 col-md-offset-3'>
@@ -44,15 +75,16 @@ class Login extends Component {
                                     <h4><span className='glyphicon glyphicon-lock'></span>Login</h4>
                                 </div>
                                 <div className='myModal-body'>
+                                    {this.failedValidationMessage()}
                                     <div>
                                         <div className='form-group'>
-                                            <label htmlFor='username'><span className='glyphicon glyphicon-user'></span></label>
+                                            <label htmlFor='username'><span className='glyphicon glyphicon-user'></span>&nbsp; USERNAME</label>
                                             <input type='text' className='form-control' id='username' placeholder='Enter email' 
                                                 value={this.state.username} onChange={this.onUserNameChange.bind(this)}
                                             />
                                         </div>
                                         <div className='form-group'>
-                                            <label htmlFor='password'><span className='glyphicon glyphicon-eye-open'></span></label>
+                                            <label htmlFor='password'><span className='glyphicon glyphicon-eye-open'></span>&nbsp; PASSWORD</label>
                                             <input value={this.state.password} onChange={this.onPasswordChange.bind(this)}
                                                     type='text' className='form-control' id='password' 
                                                     placeholder='Enter password' />

@@ -1,10 +1,7 @@
 import axios from 'axios';
-
 import dispatcher from '../dispatcher/dispatcher';
 
 var gApiUrl = 'http://5a0cf238e4200e00125524d3.mockapi.io/v2/groups';
-var uApiUrl = 'http://5a0cf238e4200e00125524d3.mockapi.io/v2/users';
-
 
 export function loadGroups() {
     axios.get( gApiUrl )
@@ -20,6 +17,26 @@ export function loadGroupById(groupId) {
         })
 }
 
+export function loadAVailGroupsToEnroll(userId) {
+    axios.get( gApiUrl )
+        .then( (response) => {
+            let finalGroups = [];
+            let allGroups = response.data;
+            let availGroups = allGroups
+                .filter ( (group) => {
+                     return !group.members.some( (member) => {
+                        return member === userId;
+                    })
+                } )
+            console.log('Available groups' + JSON.stringify(availGroups));
+            dispatcher.dispatch( {
+                type : "AVAILABLE_GROUPS_LOADED",
+                data : availGroups
+            })
+        })
+}
+
+//does not work anymore
 export function loadGroupUsers(groupId) {
     axios.get( gApiUrl + '/' + groupId + '/users')
         .then( (response) => {
@@ -41,7 +58,6 @@ export function updateGroup(groupId, updatedGroupInfo) {
         })
 }
 
-//TODO: delete group
 export function deleteGroup(groupId) {
     axios.delete( gApiUrl + '/' + groupId )
         .then( (response) => {
@@ -49,54 +65,13 @@ export function deleteGroup(groupId) {
         })
 }
 
-export function loadUsers() {
-    axios.get ( uApiUrl )
-        .then( (response) => {
-            console.log(response.data);
-        })
-}
-
-//This one is not really needed
-export function loadUserById(userId) {
-    axios.get( uApiUrl + '/' + userId)
-        .then( (response) => {
-            console.log(response.data);
-        })
-}
-
-export function validateUserLogin(email, password) {
-    axios.get( uApiUrl )
-        .then( (response) => {
-            const userInfo = response.data.find( (user) => {
-                return user.email === email &&
-                        user.password === password;
-            } );
-            if ( userInfo !== undefined) {
-                console.log('User found');
-                console.log(JSON.stringify(userInfo));
-                dispatcher.dispatch( {
-                    type : "USER_VALIDATED",
-                    user : userInfo
-                })
-            } else {
-                console.log('User NOT found');
-                dispatcher.dispatch( {
-                    type : "USER_FAILED_VALIDATION"
-                })
-            }
-        } )
-}
-
-//create user
 
 //join group
+
 
 window.loadGroups = loadGroups;
 window.loadGroupById = loadGroupById;
 window.loadGroupUsers = loadGroupUsers;
-window.loadUsers = loadUsers;
-window.loadUserById = loadUserById;
 window.createGroup = createGroup;
 window.updateGroup = updateGroup;
 window.deleteGroup = deleteGroup;
-window.validateUserLogin = validateUserLogin;

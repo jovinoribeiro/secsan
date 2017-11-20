@@ -1,53 +1,8 @@
 import axios from 'axios';
-
 import dispatcher from '../dispatcher/dispatcher';
 
-var gApiUrl = 'http://5a0cf238e4200e00125524d3.mockapi.io/v2/groups';
 var uApiUrl = 'http://5a0cf238e4200e00125524d3.mockapi.io/v2/users';
-
-
-export function loadGroups() {
-    axios.get( gApiUrl )
-    .then( (response) => {
-        console.log(response.data);
-    })
-}
-
-export function loadGroupById(groupId) {
-    axios.get( gApiUrl + '/' + groupId )
-        .then( (response) => {
-            console.log(response.data);
-        })
-}
-
-export function loadGroupUsers(groupId) {
-    axios.get( gApiUrl + '/' + groupId + '/users')
-        .then( (response) => {
-            console.log(response.data);
-        })
-}
-
-export function createGroup(title) {
-    axios.post( gApiUrl, { title : title } )
-        .then( (response) => {
-            console.log(response.data);
-        })
-}
-
-export function updateGroup(groupId, updatedGroupInfo) {
-    axios.put( gApiUrl + '/' + groupId, updatedGroupInfo)
-        .then( (response) => {
-            console.log(response.data);
-        })
-}
-
-//TODO: delete group
-export function deleteGroup(groupId) {
-    axios.delete( gApiUrl + '/' + groupId )
-        .then( (response) => {
-            console.log(response.data);
-        })
-}
+var gApiUrl = 'http://5a0cf238e4200e00125524d3.mockapi.io/v2/groups';
 
 export function loadUsers() {
     axios.get ( uApiUrl )
@@ -61,6 +16,24 @@ export function loadUserById(userId) {
     axios.get( uApiUrl + '/' + userId)
         .then( (response) => {
             console.log(response.data);
+        })
+}
+
+export function loadGroupsByUserId(userId) {
+    axios.get( gApiUrl )
+        .then( (response) => {
+            let allGroups = response.data;
+            let userGroups = allGroups
+                .filter( (group) =>
+                    group.members.some( (member) =>
+                        member === userId
+                    )
+                )
+            console.log('user groups:' + JSON.stringify(userGroups));
+            dispatcher.dispatch( {
+                type : "USER_GROUPS_LOADED",
+                data : userGroups
+            })
         })
 }
 
@@ -89,14 +62,7 @@ export function validateUserLogin(email, password) {
 
 //create user
 
-//join group
 
-window.loadGroups = loadGroups;
-window.loadGroupById = loadGroupById;
-window.loadGroupUsers = loadGroupUsers;
 window.loadUsers = loadUsers;
 window.loadUserById = loadUserById;
-window.createGroup = createGroup;
-window.updateGroup = updateGroup;
-window.deleteGroup = deleteGroup;
 window.validateUserLogin = validateUserLogin;

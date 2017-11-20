@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
-class MainNavBar extends Component {
+class LoggedInNavBar extends Component {
     render() {
         return (
-            <nav className="navbar navbar-default navbar-fixed-top">
+            <nav className="navbar navbar-default">
                 <div className="container">
                     <div className="navbar-header">
                         <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -15,10 +15,8 @@ class MainNavBar extends Component {
                     </div>
                     <div className="collapse navbar-collapse" id="myNavbar">
                     <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#about">ABOUT</a></li>
-                        <li><a href="#features">FEATURES</a></li>
-                        <li><a href="#contact">CONTACT</a></li>
-                        <li><Link to='/login'>LOGIN</Link></li>
+                        <li><Link to='/dashboard'>DASHBOARD</Link></li>
+                        <li><Link to='/logout'>LOGOUT</Link></li>
                     </ul>
                     </div>
                 </div>
@@ -27,4 +25,4 @@ class MainNavBar extends Component {
     }
 }
 
-export default MainNavBar;
+export default LoggedInNavBar;
