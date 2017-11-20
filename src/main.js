@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 import SecretSantaApp from './SecretSantaApp';
 
-require('../src/styles/main.css');
+//require('../src/styles/main.css');
 
 document.addEventListener('DOMContentLoaded', function() {
   ReactDOM.render(
