@@ -44,10 +44,16 @@ export function loadGroupUsers(groupId) {
         })
 }
 
-export function createGroup(title) {
-    axios.post( gApiUrl, { title : title } )
+export function createGroup( event ) {
+    axios.post( gApiUrl, event )
         .then( (response) => {
             console.log(response.data);
+        })
+        .catch( (error) => {
+            console.log(error.response);
+        })
+        .catch( (response) => {
+            console.log(response.error);
         })
 }
 
