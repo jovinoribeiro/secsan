@@ -19,6 +19,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        
         UserStore.on("user_logged_in", () => {
             let curUser = UserStore.getCurrentUser();
             this.props.history.push( {

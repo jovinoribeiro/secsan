@@ -5,7 +5,7 @@ class ContactUs extends Component {
         return (
         <div id="contact" className="container">
             <h2 className="text-center">Contact</h2>
-            <div className="row slideanim ">
+            <div className="row slideanimREMOVELATER ">
               <div className="col-sm-5">
                 <p>Give us a shout.</p>
                 <p><span className="glyphicon glyphicon-map-marker"></span> San Jose, CA</p>
@@ -29,8 +29,8 @@ class ContactUs extends Component {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div>            
+        </div>
         );
     }
 }

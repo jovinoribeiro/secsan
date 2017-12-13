@@ -65,7 +65,32 @@ h4 {
   color: #b02116;
 }
 
+#footer {
+  margin-top:150px;
+}
 
+footer {
+  background-color: #b02116;
+  font-weight: bold;
+}
+
+footer p {
+  color: white;
+}
+
+footer .glyphicon {
+  color: white;
+}
+
+footer .glyphicon {
+  font-size: 20px;
+  color: white;
+  margin: 10px;
+}
+
+#contact {
+  margin-bottom:100px;
+}
 
 /* ---------- */
 
@@ -122,7 +147,7 @@ h4 {
 }
 
 .panel {
-  border: 1px solid #4da6ff;
+  /*border: 1px solid #4da6ff;*/
   border-radius: 0;
   transition: box-shadow 0.5s;
 }
@@ -138,21 +163,21 @@ h4 {
 }
 
 .panel-heading {
-    color: #fff !important;
-    background-color: #4da6ff !important;
-    padding: 25px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 0px;
+    /*color: red !important;*/
+    /*background-color: #4da6ff !important;*/
+    padding: 0px;
+    /*border-bottom: 1px solid #4da6ff;*/
+    /*border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 0px;*/
 }
 
-.panel-footer {
+/*.panel-footer {
     background-color: #fff !important;
-}
+}*/
 
-.panel-footer h3 {
+/*.panel-footer h3 {
     font-size: 32px;
 }
 
@@ -165,7 +190,7 @@ h4 {
     margin: 15px 0;
     background-color: #4da6ff;
     color: #fff;
-}
+}*/
 
 @media screen and (max-width: 768px) {
   .col-sm-4 {
@@ -179,13 +204,6 @@ h4 {
 }
 
 
-
-
-footer .glyphicon {
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: #b02116;
-}
 
 .slideanim {visibility: hidden;}
 .slide {
@@ -244,8 +262,8 @@ footer .glyphicon {
 
 #searchbox {
   padding: 40px 30px;
-  background-color: #4da6ff;
-  margin-top:50px;
+  background-color: #d9534f;
+  /*margin-top:50px;*/
 }
 
 /*.panel-danger .panel-heading {

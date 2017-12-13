@@ -10,7 +10,8 @@ class CreateGroup extends Component {
         super();
         this.state = {
             title : '',
-            giftGivingDate : ''
+            giftGivingDate : '',
+            local : ''
         }
     }
 
@@ -20,6 +21,10 @@ class CreateGroup extends Component {
 
     onDateChange(event) {
         this.setState( { giftGivingDate : event.target.value });
+    }
+
+    onLocalChange(event) {
+        this.setState( { local : event.target.value });
     }
 
     add() {
@@ -38,21 +43,32 @@ class CreateGroup extends Component {
                 <LoggedInNavBar />
                 <div className="container">
                     <h1>Create Groups</h1>
+                    <h4>Create a new group for you to join and invite your friends.</h4>
                     <div>
                         <div className='form-group'>
-                            <label htmlFor='title'>Title:</label>
+                            <label htmlFor='title'>Group Name:</label>
                             <input type='text' className='form-control'
                                 value={this.state.title}
                                 onChange={this.onTitleChange.bind(this)} />
                         </div>
                         <div className='form-group'>
-                            <label htmlFor="date">Date:</label>
+                            <label htmlFor="date">Gift Giving Date:</label>
                             <input type='text' className='form-control'
                                 value={this.state.giftGivingDate}
                                 onChange={this.onDateChange.bind(this)} />
                         </div>
-                        <Link to='/dashboard'><button className='btn btn-info'>Cancel</button></Link>
-                        <button className='btn btn-success' onClick={this.add.bind(this)}>Add</button>
+                        <div className='form-group'>
+                            <label htmlFor='place'>Location of Celebration</label>
+                            <input type='text' className='form-control'
+                                value={this.state.local}
+                                onChange={this.onLocalChange.bind(this)} />
+                        </div>
+                        <div className='btn-group'>
+                            <Link to='/dashboard'><button className='btn btn-info'>Cancel</button></Link>&nbsp;
+                        </div>
+                        <div className='btn-group'>
+                            <button className='btn btn-success' onClick={this.add.bind(this)}>Create</button>
+                        </div>
                     </div>
                 </div>
             </section>

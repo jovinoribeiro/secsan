@@ -5,7 +5,8 @@ import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import CreateGroup from './components/CreateGroup';
-import SearchGroups from './components/SearchGroups'
+import SearchGroups from './components/SearchGroups';
+import GroupDetails from './components/GroupDetails';
 
 import Footer from './components/Footer';
 
@@ -18,6 +19,7 @@ class Routes extends Component {
                 <Route path='/dashboard' component={Dashboard} />
                 <Route path='/creategroup' component={CreateGroup} />
                 <Route path='/searchgroups' component={SearchGroups} />
+                <Route path='/groupDetails/:groupId' component={GroupDetails} />
             </Switch>
         )
     }
@@ -28,6 +30,7 @@ class SecretSantaApp extends Component {
         return (
             <div>
                 <Routes />
+                <br /><br /><br /><br /><br />
                 <Footer />
             </div>
         );

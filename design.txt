@@ -1,0 +1,7 @@
+TODO:
+
+1. add the description on front page
+2. handle login
+3. add search functionality
+4. 
+

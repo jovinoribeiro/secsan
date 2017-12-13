@@ -41,6 +41,9 @@ class UserStore extends EventEmitter {
             case "USER_GROUPS_LOADED" : {
                 this.setUserGroups(action.data);
             }
+            case "GROUP_JOINED" : {
+                
+            }
             default: break;
         }
     }

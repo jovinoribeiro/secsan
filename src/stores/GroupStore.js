@@ -5,6 +5,7 @@ class GroupStore extends EventEmitter {
     constructor() {
         super();
         this.availGroups = [];
+        this.groupDetail = '';
     }
 
     setAvailableGroups(groups) {
@@ -15,12 +16,33 @@ class GroupStore extends EventEmitter {
         return this.availGroups;
     }
 
+    setGroupDetail(detail) {
+        this.groupDetail = detail;
+        this.emit("group_loaded");
+    }
+
+    getGroupDetail() {
+        return this.groupDetail;
+    }
+
     handleActions( action ) {
         console.log("Group Store has received an action");
         console.log(JSON.stringify(action));
         switch( action.type ) {
             case "AVAILABLE_GROUPS_LOADED" : {
                 this.setAvailableGroups( action.data );
+                break;
+            }
+            case "GROUPS_SEARCH_LOADED" : {
+                this.setAvailableGroups( action.data );
+                break;
+            }
+            case "GROUP_JOINED" : {
+                this.emit("group_joined");
+                break;
+            }
+            case "GROUP_LOADED" : {
+                this.setGroupDetail( action.data );
                 break;
             }
         }

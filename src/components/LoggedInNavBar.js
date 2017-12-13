@@ -12,12 +12,13 @@ class LoggedInNavBar extends Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
+                        <Link to=''><span className="navbar-brand"><strong>SECRET SANTA</strong></span></Link>
                     </div>
                     <div className="collapse navbar-collapse" id="myNavbar">
-                    <ul className="nav navbar-nav navbar-right">
-                        <li><Link to='/dashboard'>DASHBOARD</Link></li>
-                        <li><Link to='/logout'>LOGOUT</Link></li>
-                    </ul>
+                        <ul className="nav navbar-nav navbar-right">
+                            <li><Link to='/dashboard'>DASHBOARD</Link></li>
+                            <li><Link to='/logout'>LOGOUT</Link></li>
+                        </ul>
                     </div>
                 </div>
             </nav>

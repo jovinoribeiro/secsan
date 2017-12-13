@@ -28,10 +28,27 @@ export function loadAVailGroupsToEnroll(userId) {
                         return member === userId;
                     })
                 } )
-            console.log('Available groups' + JSON.stringify(availGroups));
+            //console.log('Available groups' + JSON.stringify(availGroups));
             dispatcher.dispatch( {
                 type : "AVAILABLE_GROUPS_LOADED",
                 data : availGroups
+            })
+        })
+}
+
+export function searchGroup(searchValue) {
+    axios.get( gApiUrl )
+        .then( (response) => {
+            let allGroups = response.data;
+            let resultGroups = allGroups
+                .filter( (group) => {
+                    return group.title.includes(searchValue);
+                })
+            console.log('Search groups result: ');
+            console.log(resultGroups);
+            dispatcher.dispatch( {
+                type : "GROUPS_SEARCH_LOADED",
+                data : resultGroups
             })
         })
 }
@@ -71,6 +88,29 @@ export function deleteGroup(groupId) {
         })
 }
 
+export function joinGroup(groupId, userId) {
+    axios.get( gApiUrl + '/' + groupId )
+        .then( (response) => {
+            let group = response.data;
+            group.members.push(userId);
+            axios.put( gApiUrl + '/' + groupId, group)
+                .then( (res) => {
+                    dispatcher.dispatch( {
+                        type : "GROUP_JOINED"
+                    })
+                })
+        })
+}
+
+export function fetchGroupById(groupId) {
+    axios.get( gApiUrl + '/' + groupId )
+        .then( (response) => {
+            dispatcher.dispatch( {
+                type : "GROUP_LOADED",
+                data : response.data
+            })
+        })
+}
 
 //join group
 
@@ -81,3 +121,5 @@ window.loadGroupUsers = loadGroupUsers;
 window.createGroup = createGroup;
 window.updateGroup = updateGroup;
 window.deleteGroup = deleteGroup;
+window.searchGroup = searchGroup;
+window.joinGroup = joinGroup;

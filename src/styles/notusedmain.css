@@ -2,6 +2,7 @@ body {
   font: 400 15px Lato, sans-serif;
   line-height: 1.8;
   color: #818181;
+  background-color: yellow;
 }
 
 
@@ -65,7 +66,9 @@ h4 {
   color: #b02116;
 }
 
-
+footer {
+  background-color: #b02116;
+}
 
 /* ---------- */
 
