@@ -20,6 +20,7 @@ class Routes extends Component {
                 <Route path='/creategroup' component={CreateGroup} />
                 <Route path='/searchgroups' component={SearchGroups} />
                 <Route path='/groupDetails/:groupId' component={GroupDetails} />
+                <Route path='/logout' component={Welcome} />
             </Switch>
         )
     }

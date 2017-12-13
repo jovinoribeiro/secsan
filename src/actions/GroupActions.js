@@ -2,6 +2,7 @@ import axios from 'axios';
 import dispatcher from '../dispatcher/dispatcher';
 
 var gApiUrl = 'http://5a0cf238e4200e00125524d3.mockapi.io/v2/groups';
+var uApiUrl = 'http://5a0cf238e4200e00125524d3.mockapi.io/v2/users';
 
 export function loadGroups() {
     axios.get( gApiUrl )
@@ -53,14 +54,6 @@ export function searchGroup(searchValue) {
         })
 }
 
-//does not work anymore
-export function loadGroupUsers(groupId) {
-    axios.get( gApiUrl + '/' + groupId + '/users')
-        .then( (response) => {
-            console.log(response.data);
-        })
-}
-
 export function createGroup( event ) {
     axios.post( gApiUrl, event )
         .then( (response) => {
@@ -105,14 +98,27 @@ export function joinGroup(groupId, userId) {
 export function fetchGroupById(groupId) {
     axios.get( gApiUrl + '/' + groupId )
         .then( (response) => {
-            dispatcher.dispatch( {
-                type : "GROUP_LOADED",
-                data : response.data
-            })
+            let group = response.data;
+            group.memberDetails = [];
+            axios.get( uApiUrl )
+                .then( (response) => {
+                    let users = response.data;
+                    group.members.forEach(function(element) {
+                        let user = users.find( (user) => {
+                            //console.log(element + '|' + user.id);
+                            return user.id === element
+                        });
+                        group.memberDetails.push(user);
+                        console.log(user);
+                    }, this);
+                    console.log(group);
+                    dispatcher.dispatch( {
+                        type : "GROUP_LOADED",
+                        data : group
+                    })
+                })
         })
 }
-
-//join group
 
 
 window.loadGroups = loadGroups;
@@ -123,3 +129,4 @@ window.updateGroup = updateGroup;
 window.deleteGroup = deleteGroup;
 window.searchGroup = searchGroup;
 window.joinGroup = joinGroup;
+window.fetchGroupById = fetchGroupById;
