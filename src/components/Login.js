@@ -64,9 +64,9 @@ class Login extends Component {
     render() {
         return (
             <section>
-                {/*<MainNavBar />
-                <Jumbotron />*/}
-                <div className='container'>
+                <MainNavBar />
+                <Jumbotron />
+               
                 <div className='row'>
                 <div className='col-sm-12 col-md-6 col-md-offset-3'>
                     <div className='myModal' id='loginModal'>
@@ -109,7 +109,7 @@ class Login extends Component {
                     </div>
                 </div> 
                 </div>
-                </div>   
+                
             </section>
         );
     }

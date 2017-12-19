@@ -10,17 +10,24 @@ class Features extends Component {
                         <div className="col-sm-4">
                             <span className="logo-small glyphicon glyphicon-folder-open"></span>
                             <h4>Organize Groups</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem</p>
+                            <p>
+                                You can create and/or join as many groups as you want.
+                                Group admin approves or rejects new members.
+                                Set Event date and location
+                                Set the price of gits
+                            </p>
                         </div>
                         <div className="col-sm-4">
                             <span className="logo-small glyphicon glyphicon-tree-deciduous"></span>
                             <h4>Interact</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem</p>
+                            <p>Participants can send each other's private messages. 
+                                You can also send public messages in a group message board.  </p>
                         </div>
                         <div className="col-sm-4">
                             <span className="logo-small glyphicon glyphicon-lock"></span>
                             <h4>Shop</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+                            <p>Not sure what to buy? Let us suggest you a few gifts that are popular 
+                                with Secret Santa Partipants.</p>
                         </div>
                     </div>
                 </div>

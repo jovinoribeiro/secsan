@@ -7,7 +7,7 @@ class ContactUs extends Component {
             <h2 className="text-center">Contact</h2>
             <div className="row slideanimREMOVELATER ">
               <div className="col-sm-5">
-                <p>Give us a shout.</p>
+                <p><strong>Give us a shout.</strong></p>
                 <p><span className="glyphicon glyphicon-map-marker"></span> San Jose, CA</p>
                 <p><span className="glyphicon glyphicon-phone"></span> +1 408-999-9999</p>
                 <p><span className="glyphicon glyphicon-envelope"></span> help@secretsanta.com</p>
@@ -25,7 +25,7 @@ class ContactUs extends Component {
                 <br/>
                 <div className="row">
                   <div className="col-sm-12 form-group">
-                    <button className="btn btn-default pull-right" type="submit">Send</button>
+                    <button className="btn btn-danger pull-right" type="submit">Send</button>
                   </div>
                 </div>
               </div>
